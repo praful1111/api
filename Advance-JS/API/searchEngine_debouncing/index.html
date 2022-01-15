@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Praful|Movies</title>
+    <style>
+      body {
+        background-color: black;
+        color: white;
+      }
+      #outer {
+        border: 1px solid yellow;
+        width: 80%;
+        margin: auto;
+        height: 880px;
+        background-color: rgb(10, 0, 0);
+
+        box-shadow: 0px 0px 80px 0px #0ff;
+      }
+      #movie {
+        width: 500px;
+        height: 30px;
+        border-radius: 20px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: bolder;
+        /* border: 1px solid rgb(255, 6, 6); */
+      }
+      #typing {
+        width: 500px;
+        margin: auto;
+      }
+      #movies {
+        height: 370px;
+        width: 356px;
+        /* border: 1px solid red; */
+        overflow: scroll;
+        margin: auto;
+      }
+      #movies::-webkit-scrollbar {
+        display: none;
+      }
+
+      #innerbox {
+        display: flex;
+        justify-content: space-between;
+        border: 0.1px solid grey;
+        border-collapse: collapse;
+        cursor: pointer;
+      }
+      #innerbox:hover {
+        font-weight: bolder;
+        font-size: 20px;
+        box-shadow: 0px 0px 20px 0px rgb(255, 51, 0);
+      }
+      #innerbox #img {
+        width: 60px;
+        height: 60px;
+        border-radius: 20px;
+        margin-right: 12px;
+      }
+
+      #innerbox #movie_name {
+        margin-left: 12px;
+      }
+
+      #container {
+        border: 1px solid teal;
+        background-color: rgb(10, 0, 0);
+        box-shadow: 0px 0px 80px 0px rgb(217, 255, 0);
+        width: 60%;
+        margin-top: 20px;
+        margin: auto;
+      }
+      #div {
+        display: flex;
+      }
+      #div2 {
+        margin: 20px;
+      }
+      #title {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="outer">
+      <div id="typing">
+        <input
+          oninput="debounce(searchMovie,3000)"
+          type="text"
+          id="movie"
+          placeholder="Search For Movie Details"
+        />
+      </div>
+      <div id="movies"></div>
+      <div id="container"></div>
+    </div>
+  </body>
+</html>
+
+<!-- _______________________________________________________________________________________ -->
+<script src="index.js"></script>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #user{
+            display: grid;
+            grid-template-columns: repeat(4,25%);
+            margin: 5%;
+            grid-gap: 5%;
+        }
+    </style>
+</head>
+<body>
+    <div id="user"></div>
+</body>
+</html>
+<script>
+     var cart = [];
+    var container=document.getElementById("user")
+
+    let url = "https://reqres.in/api/users";
+
+   async function getUser(){
+       try{                                 //for error finding
+           let res=await fetch(url);
+       let data=await res.json();    //balti
+       var user=data.data;            //pani
+       
+       appendProducts(user)        //---------->calling function appendProducts
+       console.log("user:",user)
+    }
+       catch(err){                      //for error finding
+           console.log("This error came from try & catch:",err)
+       }
+   }
+  getUser();              //calling function getUser()
+ 
+    //DOM------------------------------------->
+   
+    
+    function appendProducts(arr) {
+     
+  arr.forEach(function (element) {
+    let div = document.createElement("div");
+
+    let img = document.createElement("img");
+    img.src = element.avatar;
+
+    let first_name = document.createElement("p");
+
+    first_name.innerText = element.first_name;
+
+    let email = document.createElement("p");
+
+    email.innerText = element.email;
+   
+    let prize =document.createElement("p");
+    prize.innerText=Math.floor(Math.random()*100)+1;
+
+
+    // cart button-------------------------------------->
+    var cart = document.createElement("button"); 
+        cart.textContent = "Add to Cart";
+        cart.addEventListener("click",function(){
+            addToCart(element);
+        });
+        function addToCart(element){
+      cart.push(element);
+      localStorage.setItem("cartItems",JSON.stringify(cart));   
+      //<---wiil send the data to CART
+    }
+     
+        // function addTocart(element){
+        //     cart.push(element);
+        
+        // }
+      container.appendChild(div);
+      div.append(img,first_name,email,prize,cart)
+
+  });
+  
+}
+</script>

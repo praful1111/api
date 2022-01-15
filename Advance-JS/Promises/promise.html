@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+//     var myPromise=new Promise(function (resolve,reject){
+//         reject("hi i am resolve")
+//     });
+
+//     // when query is resolved--------------------->
+//     // myPromise.then(function(response){
+//     //     console.log("response:",response)
+//     // })
+
+
+
+//  // when query is rejected--------------------->
+//     myPromise.catch(function(rejector){
+//         console.log("rejector:",rejector)
+//     })
+
+
+    // example--------------------------------------------->
+    let passexam = true;
+    let parentPromise =new Promise (function(resolve, reject){
+        setTimeout(function(){
+        if(passexam){
+            resolve("laptop")
+        }
+        else {
+            reject("chappal")
+        }
+    },5000)       //result shows after 5 second
+
+    });
+    console.log("pending")
+    parentPromise.then(function(resolve){   // for if condition
+        console.log("resolve:", resolve)
+        console.log("Done")  //after 5 seconds
+
+    });
+    parentPromise.catch(function(reject){  //or else if condition
+        console.log("reject:",reject)
+    })
+     
+   
+
+
+</script>

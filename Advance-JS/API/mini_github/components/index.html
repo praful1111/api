@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css">
+    <title>Github</title>
+   
+      
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <div id="main">
+      <button id="repoButton">Get User Repo</button>
+    </div>
+    <div id="container">REPOSETORY</div>
+  </body>
+</html>
+
+<script type="module">
+  import navbar from "./navbar.js";
+  var data;
+  //   console.log("navbar", navbar);
+
+  let container = document.getElementById("navbar");
+
+  container.innerHTML = navbar();
+
+// fetching data from API url--------------------------------------->
+  import getUser from "./getUser.js";
+  let input = document.getElementById("search-input");
+  input.addEventListener("keypress", searchUser);
+
+  async function searchUser(event) {
+    if (event.key === "Enter") {
+      let query = input.value;
+
+      data = await getUser(query); //Taking data from getUser.js
+      console.log(data);
+
+// for profile image in navbar (html from navbar.js)-------------------------------->
+      let avatar = data.avatar_url;
+      // console.log(avatar)
+      document.getElementById("profile-img").src = avatar;
+    }
+  }
+
+//when We click the Get user repo Button we will get "all Reposetories"
+  let button = document
+    .getElementById("repoButton")
+    .addEventListener("click", getUserRepo);
+
+  async function getUserRepo() {
+//when We click Get user repo Button
+    try {
+      let res = await fetch(data.repos_url);
+      let repo_data = await res.json();
+      showRepo(repo_data);
+      console.log("repo_data:", repo_data);
+    } catch (er) {
+      console.log("error from try/catch");
+    }
+  }
+
+// Printing all Reoposetry name on home page------------------------->
+  var box = document.getElementById("container");
+  function showRepo(ele) {
+    ele.forEach(function (ele) {
+      var p = document.createElement("p");
+      p.innerText = ele.name;
+      p.style.color="red";
+    
+
+      box.append(p);
+    });
+  }
+</script>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+      #main{
+        display: flex;
+        gap: 20px;
+      }
+      #box{
+        border: 1px solid red;
+        width: 300px ;
+        height: 200px;
+        
+      }
+    </style>
+</head>
+<body>
+    <div id="container">
+        City:<input type="text"id="city">
+        <button onclick="getWeather()">Search</button>
+    </div>
+    <div id="main">
+      
+    </div>
+</body>
+</html>
+<script>
+    
+    var lattitude;
+    var longitude;
+       async function getWeather(){
+        
+        let city=document.getElementById("city").value;
+      let url1=`https:api.openweathermap.org/data/2.5/weather?q=${city}&appid=c0332c8076f237fd225ed222a3f23ab5&units=metric`;
+   
+      let response=await fetch(url1);
+
+        let data =await response.json();
+        console.log("data:",data)
+        lattitude=data.coord.lat
+        longitude=data.coord.lon
+        getLat(lattitude,longitude)   
+        
+        console.log("data1:",lattitude,longitude)
+
+       }
+
+// url2 is for 7 days data taking from url1(lat & long)------------------->
+ 
+    async function getLat(ele){
+        let url2=`https://api.openweathermap.org/data/2.5/onecall?lat=${longitude}&lon=${lattitude}&exclude=weekly&appid=c0332c8076f237fd225ed222a3f23ab5`
+
+        let response2=await fetch(url2);
+      let data2 =await response2.json();
+      
+      t=data2.daily
+      shoWeather(t)
+      
+      console.log("data2:",t);
+
+    
+    }
+       
+  
+
+
+// DOM-------------------------------------------------------------------->  
+var main=document.getElementById("main")
+     function shoWeather(ele1){
+          ele1.forEach(function(item){
+           var box =document.createElement("div");
+           box.setAttribute("id","box")
+            var day=document.createElement("h3");
+            day.innerText=`Day- ${item.temp.day}`
+          
+            var max=document.createElement("h5")
+            max.innerText=`Maximum- ${item.temp.max}`;
+
+            var min=document.createElement("h5")
+            min.innerText=`Minimum- ${item.temp.min}`
+
+         
+            console.log("1:",t[0].temp)
+              console.log("p:",day)
+              console.log("max:",max)
+            
+           main.appendChild(box);
+           box.append(day,max,min)
+          
+
+          })
+
+        }
+</script>

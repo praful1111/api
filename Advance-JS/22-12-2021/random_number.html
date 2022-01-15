@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       h2{
+            border: 1px dotted rgb(84, 63, 175);
+            width: 5%;
+            height: 30px;
+            
+        }
+    </style>
+</head>
+<body>
+    <button>Throw Dice</button>
+    <h2></h2>
+</body>
+</html>
+<script>
+    var btn=document.querySelector("button").addEventListener("click",sO);
+
+    function sO(event){
+        var theRandomNumber = Math.floor(Math.random() * 7) ;
+       document.querySelector("h2").textContent=theRandomNumber;
+      var num= document.querySelector("h2");      
+       if(theRandomNumber== 1){
+        num.style.color="red";
+     }
+     else if(theRandomNumber== 6){
+        num.style.color="green";
+     }
+     else if(theRandomNumber== 2){
+        num.style.color="black";
+     }
+     else if(theRandomNumber== 3){
+        num.style.color="blue";
+     }
+     else if(theRandomNumber== 4){
+        num.style.color="orange";
+     }
+     else if(theRandomNumber== 5){
+        num.style.color="skyblue";
+     }
+     
+       
+    }
+ 
+</script>
+ 

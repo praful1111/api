@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box{
+            border: 1px solid red;
+            width: 50%;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+  
+    <input type="checkbox" id="vehicle1" name="vehicle1" value="Pizza">
+    <label for="vehicle1"> Pizza </label><br>
+    <input type="checkbox" id="vehicle2" name="vehicle1" value="Donats">
+    <label for="vehicle1">Donats</label><br>
+    <input type="checkbox" id="vehicle3" name="vehicle1" value="Burger">
+    <label for="vehicle1"> Burger</label><br>
+    <button onclick="order()">Order Food</button>
+
+    <div id="box"></div>
+</body>
+</html>
+<script>
+   
+    function order(){
+        var items=[]
+      var item1= document.getElementById("vehicle1")
+      
+      if (item1.checked == true){
+        console.log(item1.value)
+        items.push(item1.value);
+        console.log(items)
+  }
+  else {
+      items.splice(0,1)
+  }
+  var item2= document.getElementById("vehicle2")
+      
+      if (item2.checked == true){
+        console.log(item2.value);
+        items.push(item2.value);
+        console.log(items)
+  }
+  else {
+      items.splice(0,1)
+  }
+  var item3= document.getElementById("vehicle3")
+      
+      if (item3.checked == true){
+        console.log(item3.value);
+        items.push(item3.value);
+        console.log(items)
+  }
+  else {
+      items.splice(0,1)
+  }
+   items.push()
+   var box=document.getElementById("box")
+//    Promise---------------------------------------------------->
+    let parentPromise =new Promise (function(resolve, reject){
+        setTimeout(function(){
+        if(items.length>0){
+            resolve("Youre oder is accepted")
+        }
+       
+    },5000)       //result shows after 5 second
+
+    });
+     parentPromise.then(function(resolve){   // for if condition
+        console.log("resolve:", resolve)
+       item1.document.textContent=resolve;
+          
+        box.appendChild()
+
+    //     var res = document.getElementById("gender").value;
+    //   document.getElementById("urGender").textContent = res;
+    });
+     
+   
+}
+</script>

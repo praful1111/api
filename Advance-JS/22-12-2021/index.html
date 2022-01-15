@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        #box{
+            border: 1px solid red;
+            width: 100%;
+            /* height: 20px; */
+        }
+    </style>
+  </head>
+  <body>
+    <button id="Objects">Objects</button>
+    <button id="Arrays">Arrays</button>
+    <button id="Functions">Functions</button>
+    <button id="String">String</button>
+    <button id="Number">Number</button>
+    <button id="Null">Null</button>
+    <button id="Undefined">Undefined</button>
+
+  </body>
+</html>
+<script>
+    var body=document.querySelector("body")
+    document.getElementById("Objects").addEventListener("click",aO);
+    document.getElementById("Arrays").addEventListener("click",bO);
+    document.getElementById("Functions").addEventListener("click",cO);
+    function aO(){
+    var box=document.createElement("div")
+    box.setAttribute("id","box");
+        
+        var ul1=document.createElement("li");
+        var ul2=document.createElement("li");
+        var ul3=document.createElement("li");
+        var ul4=document.createElement("li");
+        var ul5=document.createElement("li");
+        ul1.textContent="An object is a collection of properties, and a property is an association between a name (or key) and a value.";
+        ul2.textContent="A property's value can be a function, in which case the property is known as a method.";
+        ul3.textContent="In addition to objects that are predefined in the browser, you can define your own objects.";
+        ul4.textContent="Objects are real usefull for making ecommerce website";
+        ul5.textContent="We can access the properties of an object using dot notation."
+
+    body.appendChild(box)
+    
+    box.append(ul1,ul2,ul3,ul4,ul5)
+    }
+    
+    function bO(){
+    var box=document.createElement("div")
+    box.setAttribute("id","box");
+        
+        var ul1=document.createElement("li");
+        var ul2=document.createElement("li");
+        var ul3=document.createElement("li");
+        var ul4=document.createElement("li");
+        var ul5=document.createElement("li");
+        ul1.textContent="Arrays are list-like objects whose prototype has methods to perform traversal and mutation operations.";
+        ul2.textContent="Neither the length of a JavaScript array nor the types of its elements are fixed. ";
+        ul3.textContent="Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array";
+        ul4.textContent="JavaScript arrays are not guaranteed to be dense";
+        ul5.textContent="we can access an array element using index"
+
+    body.appendChild(box)
+    
+    box.append(ul1,ul2,ul3,ul4,ul5)
+    }
+  
+    // functions---------------------------------------------->
+    function cO(){
+    var box=document.createElement("div")
+    box.setAttribute("id","box");
+        
+        var ul1=document.createElement("li");
+        var ul2=document.createElement("li");
+        var ul3=document.createElement("li");
+        var ul4=document.createElement("li");
+        var ul5=document.createElement("li");
+        ul1.textContent="Functions are one of the fundamental building blocks in JavaScript.";
+        ul2.textContent="To use a function, you must define it somewhere in the scope from which you wish to call it.";
+        ul3.textContent="Since an array's length can change at any time, and data can be stored at non-contiguous locations in the array";
+        
+
+    body.appendChild(box)
+    
+    box.append(ul1,ul2,ul3)
+    }
+</script>

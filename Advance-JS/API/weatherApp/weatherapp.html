@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        background-color: black;
+      }
+      #gmap_canvas {
+        /* position: relative; */
+        text-align: right;
+        height: 300px;
+        width: 100%;
+        border-radius: 20px;
+      }
+      #main {
+        width: 60%;
+        /* height: 550px; */
+        border: 1px solid rebeccapurple;
+        margin: auto;
+        text-align: center;
+        font-size: 29px;
+        color: red;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-weight: bolder;
+        background-image: url("https://quesanswer.com/wp-content/uploads/2021/06/android-weather-apps.png");
+        border-radius: 20px;
+        background-size: cover;
+        opacity: 0.8;
+      }
+      #city {
+        height: 26px;
+        width: 250px;
+        border-radius: 20px;
+      }
+      #submit {
+        width: 100px;
+        height: 25px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+          rgba(0, 0, 0, 0.22) 0px 15px 12px;
+        cursor: pointer;
+      }
+      #submit:hover {
+        box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+      }
+      #container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+      }
+      #container .box {
+        border: 1px solid teal;
+        width: 150px;
+        height: 250px;
+        margin: auto;
+        margin-top: 10%;
+        background-color: rgb(196, 201, 235);
+        color: rgb(19, 18, 17);
+        font-weight: bolder;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+          rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        border-radius: 20px;
+      }
+
+      i {
+        margin-top: 20px;
+      }
+      p {
+        /* margin-top: 100px; */
+        font-size: 20px;
+      }
+      hr {
+        border-top: 2px solid red;
+        box-shadow: rgba(255, 60, 0, 0.25) 0px 50px 100px -20px,
+          rgba(255, 0, 0, 0.3) 0px 30px 60px -30px,
+          rgba(0, 128, 255, 0.35) 0px -2px 6px 0px inset;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      City: <input type="text" id="city" />
+      <button id="submit" onclick="fetchApi()">Submit</button>
+      <div id="container">
+        <div id="box1" class="box">
+          <i class="fal fa-temperature-high fa-4x"></i>
+          <div class="innerb" id="innerb1"></div>
+        </div>
+        <div id="box2" class="box">
+          <i class="far fa-tire-pressure-warning fa-4x"></i>
+          <div class="innerb" id="innerb2"></div>
+        </div>
+        <div id="box3" class="box">
+          <i class="fal fa-dewpoint fa-4x"></i>
+          <div class="innerb" id="innerb3"></div>
+        </div>
+      </div>
+      <hr />
+      <div id="map"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let container = document.getElementById("container");
+  let box1 = document.getElementById("box1");
+  let box2 = document.getElementById("box2");
+  let box3 = document.getElementById("box3");
+  let innerb1 = document.getElementById("innerb1");
+  let innerb2 = document.getElementById("innerb2");
+  let innerb3 = document.getElementById("innerb3");
+
+  // fetching data from API url--------------------------------------->
+  async function fetchApi() {
+    let city = document.getElementById("city").value;
+    try {
+      let response = await fetch( `https:api.openweathermap.org/data/2.5/weather?q=${city}&appid=c0332c8076f237fd225ed222a3f23ab5&units=metric`);
+      let data = await response.json();
+      showWeather(data); //married to line 146 [function showWeather(weather)
+      console.log("data:", data);
+    } catch (err) {
+      console.log("This Error is from try & catch code:", err);
+    }
+
+    var map = document.getElementById("map");
+    map.innerHTML = `<div class="mapouter"><div class="gmap_canvas">
+    <iframe width="1080" height="515"
+    id="gmap_canvas"
+    src="https://maps.google.com/maps?q=${city}&t=k&z=15&ie=UTF8&iwloc=&output=embed"
+    frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
+    </iframe>
+    </div>
+    </div>`;
+  }
+  function showWeather(weather) {
+    innerb1.innerText = "";
+    innerb2.innerText = "";
+    innerb3.innerText = "";
+    let temp = document.createElement("p");
+    temp.innerText = `Tempreture - ${weather.main.temp}°C`;
+
+    let pressure = document.createElement("p");
+    pressure.innerHTML = `Pressure - ${weather.main.pressure} pascal`;
+
+    let humidity = document.createElement("p");
+    humidity.innerText = `Humidity - ${weather.main.humidity}kg-1`;
+
+    // console.log(hum)
+    container.append(box1, box2, box3);
+    box1.append(innerb1);
+    box2.append(innerb2);
+    box3.append(innerb3);
+    innerb1.append(temp);
+    innerb2.append(pressure);
+    innerb3.append(humidity);
+  }
+</script>

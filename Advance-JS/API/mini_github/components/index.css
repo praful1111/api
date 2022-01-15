@@ -1,0 +1,72 @@
+body {
+    margin: 0px;
+  }
+  #navbar {
+    display: flex;
+    background-color: black;
+    color: white;
+    justify-content: space-around;
+  }
+  #logo img  {
+    width: 80px;
+    padding: 9px;
+    margin-left: -20%;
+  }
+  #search{
+      margin-left: 20%;
+  }
+  #profile-img {
+    width: 50%;
+    border-radius: 50%;
+    height: 40px;
+  }
+
+  #list li {
+    display: inline;
+    margin-right: 2%;
+  }
+  #search {
+    width: 10%;
+    padding: 12px;
+  }
+
+  #logo {
+    width: 5%;
+    text-align: right;
+  }
+  #profile img{
+      width:80px ;
+      height: 80px;
+  }
+  #options {
+    width: 75%;
+    margin-left: 30%;
+  }
+  #profile {
+    width: 5%;
+  }
+  a {
+    color: white;
+    text-decoration: none;
+  }
+  #container{
+    margin:auto;
+    border: 1px solid red;
+    width: 30%;
+    font-size: 20px;
+    font-weight: bolder;
+   
+  }
+  #repoButton{
+    margin-left:35%;
+    font-size: 20px;
+    width: 30%;
+    background-color: black;
+    color: white;
+    border: 0.5px solid rgb(141, 173, 80);
+    margin-bottom:20px ;
+    cursor: pointer;
+  }
+  #repoButton::after{
+    color: red;
+  }

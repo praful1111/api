@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+        <input type="text" id="name">
+        <button onclick="register()">Register</button> <br>
+        Number Of Members In Queue
+        <div id="count"></div>
+</body>
+</html>
+<script>
+
+let queue =["pablo","babu","shinchan","jetha"];
+
+   function register(){
+        // ele.preventdefault()
+      let name=document.getElementById("name").value;
+        queue.push(name);
+        console.log("queue:", queue);
+
+        alert(`${name} youre registration is succesfull.`);
+        
+        let mypromise= new Promise(function (resolve, reject){
+            setInterval(function() {
+                if(queue[0]===name){
+                resolve(`${name} its youre turn Now`);
+            }
+            else if(queue.length==0){
+               reject("not available")
+            }
+            },3000);  
+            
+        });
+        mypromise.then(function (resolve){
+            alert(resolve)
+        });
+       
+        mypromise.catch(function(reject){
+            alert(reject)
+        })
+    }
+
+    // Youre entering or not the vaccination will going on---------->
+    function startVaccination(){
+        count.innerHTML=""
+        queue.shift();
+       
+        var l=document.getElementById("count");
+        l.append(queue.length)
+
+        if(queue.length===0){
+            clearInterval(delay)  //after deleting all elemnts from queue 3sec dalay (line-48) has to stop 
+            // alert("Vaccine Out Of Stock")
+        }
+
+        console.log("queue:",queue);
+    }
+    let delay=setInterval(startVaccination,1000) //after every 3 second 0th index is delete
+
+  
+</script> 
